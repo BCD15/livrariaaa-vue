@@ -46,7 +46,7 @@
     --color-border-hover: var(--vt-c-divider-dark-1);
 
     --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
+    --color-text: var(--vt-c-white);
   }
 }
 
@@ -61,7 +61,7 @@
 
 body {
   min-height: 100vh;
-  color: var(--color-text);
+  color: #BF8F58;
   background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
