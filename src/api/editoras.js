@@ -12,7 +12,7 @@ export default class EditorasApi {
     const { data } = await axios.put(`/editora/${editora.id}/`, editora);
     return data;
   }
-  async excluirCategoria(id) {
+  async excluirEditora(id) {
     const { data } = await axios.delete(`/editora/${id}/`);
     return data;
   }
