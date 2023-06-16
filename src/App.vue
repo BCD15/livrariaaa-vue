@@ -4,6 +4,7 @@
     <router-link to="/categorias">Categorias</router-link>
     <router-link to="/editoras">Editoras</router-link>
     <router-link to="/autores">Autores</router-link>
+    <router-link to="/livros">Livros</router-link>
   </header>
   <main>
     <RouterView />

@@ -1,51 +1,55 @@
 <script>
-import CategoriasApi from "@/api/categorias";
-const categoriasApi = new CategoriasApi();
+import LivrosApi from "@/api/livros";
+const livrosApi = new LivrosApi();
 export default {
   data() {
     return {
-      categorias: [],
-      categoria: {},
+      livros: [],
+      livro: {},
     };
   },
   async created() {
-    this.categorias = await categoriasApi.buscarTodasAsCategorias();
+    this.livros = await livrosApi.buscarTodasOsLivros();
   },
   methods: {
     async salvar() {
-      if (this.categoria.id) {
-        await categoriasApi.atualizarCategoria(this.categoria);
+      if (this.livro.id) {
+        await livrosApi.atualizarLivro(this.livro);
       } else {
-        await categoriasApi.adicionarCategoria(this.categoria);
+        await livrosApi.adicionarLivro(this.livro);
       }
-      this.categoria = {};
-      this.categorias = await categoriasApi.buscarTodasAsCategorias();
+      this.livro = {};
+      this.livros = await livrosApi.buscarTodasOsLivros();
     },
-    editar(categoria) {
-      Object.assign(this.categoria, categoria);
+    editar(livro) {
+      Object.assign(this.livro, livro);
     },
-    async excluir(categoria) {
-      await categoriasApi.excluirCategoria(categoria.id);
-      this.categorias = await categoriasApi.buscarTodasAsCategorias();
+    async excluir(livro) {
+      await livrosApi.excluirLivro(livro.id);
+      this.livros = await livrosApi.buscarTodasOsLivros();
     },
   },
 };
 </script>
 
 <template>
-  <h1>Categorias</h1>
+  <h1>Livros</h1>
   <hr />
   <div class="form">
-    <input type="text" v-model="categoria.descricao" placeholder="Descrição" />
+    <input type="text" v-model="livro.titulo" placeholder="Titulo" />
+    <input type="text" v-model="livro.categoria" placeholder="Categoria" />
+    <input type="text" v-model="livro.editora" placeholder="Editora" />
+    <input type="text" v-model="livro.autores" placeholder="Autor(es)" />
     <button @click="salvar">Salvar</button>
   </div>
   <hr />
   <ul>
-    <li v-for="categoria in categorias" :key="categoria.id">
-      <span @click="editar(categoria)">
-        ({{ categoria.id }}) - {{ categoria.descrição }} -
+    <li v-for="livro in livros" :key="livro.id">
+      <span @click="editar(livro)">
+        ({{ livro.id }}) | {{ livro.titulo }} 
+        <!-- | {{ livro.categoria }} | {{ livro.editora }} | {{ livro.autores }} -->
       </span>
-      <button @click="excluir(categoria)">X</button>
+      <button @click="excluir(livro)">X</button>
     </li>
   </ul>
 </template>
